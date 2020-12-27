@@ -1,18 +1,20 @@
-import React from 'react'
+import { useTheme } from '@emotion/react';
+import {React, useState} from 'react'
 import {
-	Box,
+	Card,
 	Heading,
 	Text
 } from 'rebass'
 
-
-const TextCard = () => {
+const TextCard = props => {
+	const theme = useTheme();
+	const [cardProps, setCardProps] = useState(props);
 	return (
 		<>
-			<Box>
-				<Heading> dude </Heading>
-				<Text> Text </Text>
-			</Box>
+			<Card theme={theme} sx={{mt: '1em'}}>
+				<Heading theme={theme}> {cardProps.title} </Heading>
+				<Text theme={theme}> {cardProps.message} </Text>
+			</Card>
 		</>
 	)
 }
