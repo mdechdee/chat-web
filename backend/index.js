@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
+import apiRoutes from './routes/api.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/posts',postRoutes);
+app.use('/api',apiRoutes);
 //app.use('/posts', postsRoute);
 
 mongoose.connect( process.env.DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true})

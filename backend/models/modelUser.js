@@ -16,6 +16,6 @@ const userSchema = mongoose.Schema({
     }
 })
 
-const PostUser = mongoose.model('User', userSchema); // 'PostMessage' is just a name (can change to anything)
+const ModelUser = mongoose.model('User', userSchema); // 'PostMessage' is just a name (can change to anything)
 
-export default PostUser;
+export default ModelUser;

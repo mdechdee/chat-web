@@ -3,12 +3,12 @@ import { getUsers, postUser, updateUser, addMember, addMessage, postGroup } from
 
 const router = express.Router();
 
-//localhost:5000/posts
+//localhost:5000/posts/group/1
 
 router.get('/user', getUsers);
 router.post('/user', postUser);
 router.post('/group', postGroup);
-router.patch("/group/:groupId", addMember);
+router.patch("/group/add/:groupId", addMember);
 router.patch("/message/:groupId", addMessage);
 router.patch("/:userId", updateUser);
 

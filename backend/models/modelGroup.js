@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const groupSchema = mongoose.Schema({
-    group_name: {
+    group_id: {
         type: String,
         default: "New group"
     },
@@ -19,6 +19,6 @@ const groupSchema = mongoose.Schema({
     }
 });
 
-const PostGroup = mongoose.model('Group', groupSchema); // 'PostMessage' is just a name (can change to anything)
+const ModelGroup = mongoose.model('Group', groupSchema); // 'PostMessage' is just a name (can change to anything)
 
-export default PostGroup;
+export default ModelGroup;

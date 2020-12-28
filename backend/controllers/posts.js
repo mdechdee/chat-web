@@ -1,5 +1,5 @@
-import PostUser from '../models/postUser.js';
-import PostGroup from '../models/postGroup.js';
+import PostUser from '../models/modelUser.js';
+import PostGroup from '../models/modelGroup.js';
 export const getUsers = async (req,res) => {
     try{
         const postMessage = await PostUser.find();
@@ -79,7 +79,7 @@ export const addMessage = async (req,res,next) => {
 
         console.log(result);
         res.status(200).json(result);
-        
+
     } catch(err){
         res.status(409).json({message: err.message})
     }
