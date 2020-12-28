@@ -1,21 +1,20 @@
-import {React, useState, useEffect } from 'react'
+import { React, useState, useEffect } from 'react'
 import {
 	Box,
 	Heading,
 } from 'rebass'
-import TextCard from './TextCard.js'
+import MessageCard from './MessageCard.js'
 import axios from 'axios';
 import { useTheme } from '@emotion/react';
-const url = "http://localhost:5000/posts";
 
-function TextList(props) {
 
+function MessageList(props) {
 	const [data, setData] = useState([]);
 	const theme = useTheme();
-	
+
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await axios(url,);
+			const result = await axios('/posts');
 			setData(result.data);
 			console.log(result.data);
 		};
@@ -28,11 +27,11 @@ function TextList(props) {
 				<Heading theme={theme}> Some dudes text </Heading>
 				{
 					data.map(item => (
-						<TextCard 
+						<MessageCard
 							key={item._id}
 							title={item.title}
 							message={item.message}
-						></TextCard>
+						></MessageCard>
 					))
 				}
 			</Box>
@@ -40,4 +39,4 @@ function TextList(props) {
 	)
 }
 
-export default TextList;
+export default MessageList;

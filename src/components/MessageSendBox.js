@@ -7,7 +7,7 @@ import {
 import { Label, Input, Textarea } from '@rebass/forms'
 import { useTheme } from '@emotion/react'
 
-const TextBox = () => {
+const MessageSendBox = () => {
 	const theme = useTheme()
 	return (
 		<Flex
@@ -16,19 +16,12 @@ const TextBox = () => {
 			flexDirection='column'
 			sx={{
 				'*': {
-					mb: '.5em'
+					mb: 1
 				}
 			}}
-			>
-			<Box sx={{py: '2em'}} theme={theme}>
-				<Label theme={theme} htmlFor='title'>Title</Label>
-				<Input
-					id='title'
-					name='title'
-					type='title'
-					mb = '1em'
-					theme={theme}
-				/>
+		>
+			<Box sx={{ py: 3 }} theme={theme}>
+				<Label theme={theme} htmlFor='title'>New Message</Label>
 
 				<Textarea
 					id='message'
@@ -42,4 +35,4 @@ const TextBox = () => {
 	)
 }
 
-export default TextBox;
+export default MessageSendBox;
