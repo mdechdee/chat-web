@@ -1,31 +1,52 @@
 import { useTheme } from '@emotion/react';
-import {React} from 'react'
-import {
- Button, Flex,
-} from 'rebass'
+import { useState, useEffect, React } from 'react'
+import { useHistory } from 'react-router-dom';
+import { Button, Flex } from 'rebass'
 import { Input } from '@rebass/forms'
-
-
+import axios from 'axios';
 
 const GroupJoinBox = props => {
   const theme = useTheme();
+	const [groups, setGroups] = useState([]);
+  const [inputGroupValue, setInputGroupValue] = useState("");
+  let history = useHistory();
 
-  const joinGroup = () => {
-
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await axios('http://localhost:5000/api/group');
+      setGroups(result.data);
+      console.log(result.data)
+		};
+		fetchData();
+  }, []);
+  
+  const joinGroup = async () => {
+    const groupNames = groups.map(({group_id}) => group_id);
+    console.log(groupNames);
+    if(groupNames.includes(inputGroupValue)){
+      history.push('/group/'+inputGroupValue);
+    }
   };
 
-  return(
-    <Flex theme={theme} sx={{'> *': {mx: '1em'}}}>
+  const handleTextChange = (e) => {
+    if(e.target.value.length > 5) return
+    setInputGroupValue(e.target.value.toLowerCase())
+  }
+
+  return (
+    <Flex theme={theme} sx={{ '> *': { mx: '1em' } }}>
       <Input
-          id='group_id'
-          name='group_id'
-          type='id'
-          theme={theme}
+        id='group_id'
+        name='group_id'
+        type='id'
+        theme={theme}
+        value={inputGroupValue}
+        onChange={handleTextChange}
       />
       <Button
-      onClick={joinGroup} 
-      theme={theme}> 
-        Join Group 
+        onClick={joinGroup}
+        theme={theme}>
+        Join Group
       </Button>
     </Flex>
   );

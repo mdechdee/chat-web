@@ -1,22 +1,22 @@
 import { useTheme } from '@emotion/react';
-import {React} from 'react'
+import { React } from 'react'
 import {
-	Flex
+  Flex
 } from 'rebass'
 import GroupJoinBox from './GroupJoinBox.js'
 import GroupNewButton from './GroupNewButton.js'
 
 const GroupJoinPage = props => {
   const theme = useTheme();
-  return(
-    <Flex 
+  return (
+    <Flex
       sx={{
-       flexDirection: 'column',
-       ' *': {my: '.5em'}
+        flexDirection: 'column',
+        '*': { my: '.5em' }
       }}
     >
-      <GroupNewButton/>
-      <GroupJoinBox/>
+      <GroupNewButton />
+      <GroupJoinBox />
     </Flex>
   );
 }
