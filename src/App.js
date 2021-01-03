@@ -10,6 +10,7 @@ import LoginPage from './components/LoginPage.js'
 import GroupJoinPage from './components/GroupJoinPage.js'
 import GroupPage from './components/GroupPage.js'
 import { ProvideAuth } from './components/authentication/Auth.js'
+import PrivateRoute from './components/authentication/PrivateRoute.js'
 
 function App() {
 	return (
@@ -24,12 +25,12 @@ function App() {
 							<Route exact path="/login">
 								<LoginPage />
 							</Route>
-							<Route path="/join_group">
+							<PrivateRoute path="/join_group">
 								<GroupJoinPage />
-							</Route>
-							<Route path="/group/:group_id">
+							</PrivateRoute>
+							<PrivateRoute path="/group/:group_id">
 								<GroupPage />
-							</Route>
+							</PrivateRoute>
 						</Switch>
 					</Flex>
 				</Router>

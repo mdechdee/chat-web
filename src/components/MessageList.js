@@ -7,13 +7,13 @@ import MessageCard from './MessageCard.js'
 import axios from 'axios';
 import { useTheme } from '@emotion/react';
 import { useLocation } from 'react-router-dom';
+import { useAuth } from './authentication/Auth.js';
 
 
 function MessageList(props) {
 	let location = useLocation();
 	const [data, setData] = useState([]);
 	const theme = useTheme();
-
 	console.log(location.state.group_id);
 
 	useEffect(() => {

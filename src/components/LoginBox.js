@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react';
-import { React } from 'react'
+import { React, useState } from 'react'
 import {
   Button,
   Card,
@@ -10,9 +10,9 @@ import { useAuth } from './authentication/Auth.js'
 
 const LoginBox = props => {
   const auth = useAuth();
-
+  const [username, setUsername] = useState("");
   const login = () => {
-    auth.signin(() => {
+    auth.signin(username ,() => {
       console.log("CB_signin");
     });
   };
@@ -34,6 +34,8 @@ const LoginBox = props => {
           name='id'
           type='id'
           theme={theme}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         ></Input>
         <Button theme={theme} onClick={login} sx={{ mt: '1em' }}>Login</Button>
         <Button theme={theme} onClick={logout} sx={{ mt: '1em' }}>Logout</Button>

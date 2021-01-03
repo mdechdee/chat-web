@@ -3,7 +3,7 @@ const authContext = createContext();
 
 const fakeAuth = {
   isAuthenticated: false,
-  signin(cb) {
+  signin(userName, cb) {
     fakeAuth.isAuthenticated = true;
     setTimeout(cb, 100); // fake async
   },
@@ -29,18 +29,17 @@ export function useAuth() {
 function useProvideAuth() {
   const [user, setUser] = useState(null);
 
-  const signin = cb => {
-    return fakeAuth.signin(() => {
-      setUser(true);
-      console.log("SIGNED IN");
+  const signin = (userName, cb) => {
+    return fakeAuth.signin(userName, () => {
+      setUser(userName);
       cb();
     });
   };
 
-  const signout = cb => {
+  const signout = (cb) => {
     return fakeAuth.signout(() => {
-      setUser(false);
-      cb();
+      setUser(null);
+      cb()
     });
   };
 

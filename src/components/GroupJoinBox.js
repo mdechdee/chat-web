@@ -15,14 +15,12 @@ const GroupJoinBox = props => {
 		const fetchData = async () => {
 			const result = await axios('http://localhost:5000/api/group');
       setGroups(result.data);
-      console.log(result.data)
 		};
 		fetchData();
   }, []);
   
   const joinGroup = async () => {
     const groupNames = groups.map(({group_id}) => group_id);
-    console.log(groupNames);
     if(groupNames.includes(inputGroupValue)){
       history.push({
         pathname: '/group/' + inputGroupValue,
