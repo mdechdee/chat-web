@@ -57,7 +57,7 @@ export const patchMessage = async (req,res,next) => {
                     const index = message[i];
                     oldMessages.splice( index-i, 1);
                 }
-                const resultDelete = await ModelGroup.findOneAndUpdate({group_id: group_id}, {$set: {messages: oldMessages}});
+                const resultDelete = await ModelGroup.findOneAndUpdate({group_id: group_id}, {messages: oldMessages});
                 console.log(resultDelete);
                 res.status(200).json(resultDelete);
                 break;
@@ -69,7 +69,7 @@ export const patchMessage = async (req,res,next) => {
                 else{
                     oldMessages[index] = {message: new_message, sender: sender};
                 }
-                const resultEdit = await ModelGroup.findOneAndUpdate({group_id: group_id}, {$set: {messages: oldMessages}});
+                const resultEdit = await ModelGroup.findOneAndUpdate({group_id: group_id}, {messages: oldMessages});
                 console.log(resultEdit);
                 res.status(200).json(resultEdit);
                 break;
