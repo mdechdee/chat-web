@@ -3,7 +3,7 @@ import ModelGroup from '../models/modelGroup.js';
 export const getMessages = async (req,res) => {
     try{
         const group_id = req.params.groupId;
-        const group = await ModelGroup.find({group_id: group_id});
+        const group = await ModelGroup.findOne({group_id: group_id});
         const messages = group.messages;
         console.log(messages);
         res.status(200).json(messages);
@@ -14,6 +14,12 @@ export const getMessages = async (req,res) => {
 }
 
 export const patchMessage = async (req,res,next) => {
+    const type = req.body.type;
+    const message = req.body.message;
+    const sender = req.body.sender;
+    const group_id = req.body.group;
+    const group = await ModelGroup.findOne({group_id: group_id});
+    const oldMessages = group.messages;
     try{
         /*
         {
@@ -36,20 +42,14 @@ export const patchMessage = async (req,res,next) => {
             group: "5CvGh"
         }
         */
-    
-        const type = req.body.type;
-        const message = req.body.message;
-        const sender = req.body.sender;
-        const group_id = req.body.group;
-        const group = ModelGroup.findOne({group_id: group_id});
-        const oldMessages = group.messages;
-
         switch(type){
             case "add":
                 const newMessage = {message: message, sender: sender};
-                const resultAdd = ModelGroup.findOneAndUpdate({group_id: group_id}, {$set: {messages: [...oldMessages, newMessage]}});
-                console.log(resultAdd);
+                const messages = [...oldMessages, newMessage];
+                console.log(messages);
+                const resultAdd = await ModelGroup.findOneAndUpdate({group_id: group_id}, {messages: messages});
                 res.status(200).json(resultAdd);
+                
                 break;
 
             case "delete":
@@ -57,7 +57,7 @@ export const patchMessage = async (req,res,next) => {
                     const index = message[i];
                     oldMessages.splice( index-i, 1);
                 }
-                const resultDelete = ModelGroup.findOneAndUpdate({group_id: group_id}, {$set: {messages: oldMessages}});
+                const resultDelete = await ModelGroup.findOneAndUpdate({group_id: group_id}, {$set: {messages: oldMessages}});
                 console.log(resultDelete);
                 res.status(200).json(resultDelete);
                 break;
@@ -69,7 +69,7 @@ export const patchMessage = async (req,res,next) => {
                 else{
                     oldMessages[index] = {message: new_message, sender: sender};
                 }
-                const resultEdit = ModelGroup.findOneAndUpdate({group_id: group_id}, {$set: {messages: oldMessages}});
+                const resultEdit = await ModelGroup.findOneAndUpdate({group_id: group_id}, {$set: {messages: oldMessages}});
                 console.log(resultEdit);
                 res.status(200).json(resultEdit);
                 break;
