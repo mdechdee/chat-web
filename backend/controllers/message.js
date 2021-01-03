@@ -2,8 +2,8 @@ import ModelGroup from '../models/modelGroup.js';
 
 export const getMessages = async (req,res) => {
     try{
-        const groupId = req.params.groupId;
-        const group = await ModelGroup.findById(groupId);
+        const group_id = req.params.groupId;
+        const group = await ModelGroup.find({group_id: group_id});
         const messages = group.messages;
         console.log(messages);
         res.status(200).json(messages);
