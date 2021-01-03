@@ -12,18 +12,17 @@ import { useAuth } from './authentication/Auth.js';
 
 function MessageList(props) {
 	let location = useLocation();
-	const [data, setData] = useState([]);
+	const [messages, setMessages] = useState([]);
 	const theme = useTheme();
 	console.log(location.state.group_id);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await axios('http://localhost:5000/api/message/'+location.state.group_id);
-			setData(result.data);
-			console.log(result.data);
+			setMessages(result.data);
 		};
 		fetchData();
-	}, []);
+	}, [messages]);
 
 	return (
 		<>
@@ -31,10 +30,10 @@ function MessageList(props) {
 				<Heading theme={theme}> Some dudes text </Heading>
 				{
 					(() => {
-					if(data != []){
-						return(data.map(item => ( 
+					if(messages != []){
+						return(messages.map((item,index) => ( 
 							<MessageCard
-								key={item._id}
+								key={index}
 								title={item.title}
 								message={item.message}
 							></MessageCard>
