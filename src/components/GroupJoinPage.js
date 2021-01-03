@@ -1,8 +1,6 @@
 import { useTheme } from '@emotion/react';
 import { React } from 'react'
-import {
-  Flex
-} from 'rebass'
+import { Flex } from 'rebass'
 import GroupJoinBox from './GroupJoinBox.js'
 import GroupNewButton from './GroupNewButton.js'
 
@@ -12,7 +10,7 @@ const GroupJoinPage = props => {
     <Flex
       sx={{
         flexDirection: 'column',
-        '*': { my: '.5em' }
+        '*': { my: '.5em', mx: '.1em' }
       }}
     >
       <GroupNewButton />

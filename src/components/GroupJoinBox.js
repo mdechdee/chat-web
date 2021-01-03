@@ -24,7 +24,12 @@ const GroupJoinBox = props => {
     const groupNames = groups.map(({group_id}) => group_id);
     console.log(groupNames);
     if(groupNames.includes(inputGroupValue)){
-      history.push('/group/'+inputGroupValue);
+      history.push({
+        pathname: '/group/' + inputGroupValue,
+        state:{
+          group_id: inputGroupValue
+        }
+      });
     }
   };
 
