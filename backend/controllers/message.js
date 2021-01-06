@@ -5,7 +5,6 @@ export const getMessages = async (req,res) => {
         const group_id = req.params.groupId;
         const group = await ModelGroup.findOne({group_id: group_id});
         const messages = group.messages;
-        console.log(messages);
         res.status(200).json(messages);
     } catch (err) {
         res.status(404).json({message: err.message})
@@ -45,9 +44,8 @@ export const patchMessage = async (req,res,next) => {
         switch(type){
             case "add":
                 const newMessage = {message: message, sender: sender};
-                const messages = [...oldMessages, newMessage];
-                console.log(messages);
-                const resultAdd = await ModelGroup.findOneAndUpdate({group_id: group_id}, {messages: messages});
+                // const messages = [...oldMessages, newMessage];
+                const resultAdd = await ModelGroup.findOneAndUpdate({group_id: group_id}, {$push: {messages: newMessage}});
                 res.status(200).json(resultAdd);
                 
                 break;

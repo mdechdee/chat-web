@@ -1,4 +1,8 @@
 import ModelUser from '../models/modelUser.js';
+import dotenv from "dotenv";
+import ModelUser2 from "../models/modelUser2.js";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 export const getUsers = async (req,res) => {
     try{

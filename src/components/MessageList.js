@@ -34,7 +34,7 @@ function MessageList(props) {
 						return(messages.map((item,index) => ( 
 							<MessageCard
 								key={index}
-								title={item.title}
+								title={item.sender}
 								message={item.message}
 							></MessageCard>
 						)));
