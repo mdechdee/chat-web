@@ -12,12 +12,13 @@ export const getGroups = async (req,res) => {
     }
 }
 
-export const postGroup = async (req,res) => {
+export const createGroup = async (req,res) => {
     const post = req.body;
     const newPost = new ModelGroup(post);
 
     try{
         await newPost.save();
+        console.log(1);
         console.log(newPost);
         res.status(201).json(newPost);
     } catch(err) {

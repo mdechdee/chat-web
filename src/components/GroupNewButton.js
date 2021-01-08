@@ -1,5 +1,6 @@
 import { useTheme } from '@emotion/react';
-import {React} from 'react'
+import { React } from 'react'
+import { useHistory } from 'react-router-dom';
 import {
 	Button
 } from 'rebass'
@@ -17,23 +18,29 @@ function makeid(length) {
 
 const GroupNewButton = props => {
   const theme = useTheme();
-
-  const createGroup = () =>{
+  const history = useHistory();
+  const createGroup = async () =>{
     let new_id = makeid(5);
-    axios.post('http://localhost:5000/api/group', {
+    const groups = await axios.get('http://localhost:5000/api/group');
+    const groupNames = groups.data.map(({group_id}) => group_id);
+    console.log(groupNames);
+    while(!groupNames.includes(new_id)){
+      new_id = makeid(5);
+    }
+    const res = await axios.post('http://localhost:5000/api/group', {
       group_id: new_id,
-    })
-    .then(function (response) {
-      console.log(response);
-    }) 
-    .catch(function (error) {
-      console.log(error);
+    });
+    history.push({
+      pathname: '/group/' + new_id,
+      state: {
+        group_id: res.group_id
+      }
     });
   }
 
   return(
     <Button onClick={createGroup} theme={theme}>
-      Create New Group
+      Create a Group
     </Button>
   );
 }

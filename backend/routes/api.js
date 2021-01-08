@@ -1,7 +1,7 @@
 import express from 'express';
 import { getUsers, postUser } from '../controllers/user.js'
 import { signup, signin, signout } from '../controllers/auth.js'
-import { getGroups, postGroup } from '../controllers/group.js'
+import { getGroups, createGroup } from '../controllers/group.js'
 import { getMessages, patchMessage } from '../controllers/message.js'
 import { verifySignUp } from "../middlewares/verifySignUp.js"
 import { verifyToken } from "../middlewares/authJWT.js"
@@ -27,7 +27,7 @@ router.get("/auth/logout", signout);
 
 //Group
 router.get('/group', getGroups);
-router.post('/group', postGroup);
+router.post('/group', createGroup);
 
 //Message
 router.get('/message/:groupId', getMessages);

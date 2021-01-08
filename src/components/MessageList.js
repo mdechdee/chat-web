@@ -14,7 +14,8 @@ function MessageList(props) {
 	let location = useLocation();
 	const [messages, setMessages] = useState([]);
 	const theme = useTheme();
-	console.log(location.state.group_id);
+	console.log("message list");
+	//console.log(location.state.group_id);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -39,7 +40,8 @@ function MessageList(props) {
 							></MessageCard>
 						)));
 					}
-					else{return(<></>)};
+					else{
+						return(<></>)};
 					})()
 				}
 			</Box>

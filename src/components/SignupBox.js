@@ -17,9 +17,11 @@ const SignupBox = () => {
         if(res.status == 201){
             history.push({
                 pathname: "/login",
-                message: "You successfully registered.",
-                user: res,
-                status: 201
+                state: {
+                    message: "You successfully registered.",
+                    user: res,
+                    status: 201
+                }
             });
         }
         else if(res.status == 500){
