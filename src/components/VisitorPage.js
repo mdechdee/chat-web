@@ -3,22 +3,27 @@ import { useAuth } from './authentication/Auth.js';
 import { Redirect } from "react-router-dom";
 import { Button } from 'rebass';
 import { useTheme } from '@emotion/react';
-
+import { useHistory } from 'react-router-dom';
 
 const VisitorPage = props => {
+    let history = useHistory();
     const signup = () => {
         console.log("signup clicked");
-        return (<Redirect to="/signup" />);
+        history.push({
+            pathname: '/signup'
+        });
     }
     const signin = () => {
-        return (<Redirect to="/login" />);
+        history.push({
+            pathname: '/login'
+        });
     }
     const theme = useTheme();
     return (
-        <div id = "button">
+        <>
             <Button theme={theme} onClick={signup} sx={{ mt: '1em' }}>Sign up</Button>
             <Button theme={theme} onClick={signin} sx={{ mt: '1em' }}>Login</Button>
-        </div>
+        </>
     );
 }
 

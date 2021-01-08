@@ -25,7 +25,6 @@ const fakeAuth = {
 
 export function useProvideAuth() {
   const [user, setUser] = useState(null);
-
   const signin = (user, cb) => {
     return fakeAuth.signin(user, () => {
       setUser(user.username);
