@@ -5,25 +5,33 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
+	Redirect,
 } from "react-router-dom";
+import HomePage from './components/HomePage.js'
+import VisitorPage from './components/VisitorPage.js'
 import LoginPage from './components/LoginPage.js'
+import SignupPage from './components/SignupPage.js'
 import GroupJoinPage from './components/GroupJoinPage.js'
 import GroupPage from './components/GroupPage.js'
-import { ProvideAuth } from './components/authentication/Auth.js'
+import { useProvideAuth, authContext } from './components/authentication/Auth.js'
 import PrivateRoute from './components/authentication/PrivateRoute.js'
 
 function App() {
+	const auth = useProvideAuth();
 	return (
 		<ThemeProvider theme={preset}>
-			<ProvideAuth>
+			<authContext.Provider value={auth}>
 				<Router>
 					<Flex theme={preset} flexDirection='column' width={1 / 2} mx='auto' my='50px'>
 						<Switch>
 							<Route exact path="/">
-								<LoginPage />
+								{!auth.user ? <VisitorPage />: <HomePage/> }
 							</Route>
 							<Route exact path="/login">
 								<LoginPage />
+							</Route>
+							<Route exact path="/signup">
+								<SignupPage />
 							</Route>
 							<PrivateRoute path="/join_group">
 								<GroupJoinPage />
@@ -34,7 +42,7 @@ function App() {
 						</Switch>
 					</Flex>
 				</Router>
-			</ProvideAuth>
+			</authContext.Provider>
 		</ThemeProvider>
 	);
 }

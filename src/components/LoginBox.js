@@ -1,25 +1,27 @@
 import { useTheme } from '@emotion/react';
-import { React, useState } from 'react'
+import { React, useState } from 'react';
 import {
   Button,
-  Card,
   Heading,
-} from 'rebass'
-import { Input } from '@rebass/forms'
-import { useAuth } from './authentication/Auth.js'
+} from 'rebass';
+import { Card } from '@material-ui/core';
+import { Input } from '@rebass/forms';
+import { useAuth } from './authentication/Auth.js';
 
 const LoginBox = props => {
   const auth = useAuth();
+  console.log(auth);
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const login = () => {
-    auth.signin(username ,() => {
-      console.log("CB_signin");
+    auth.signin( {username,password} ,() => {
+      console.log(`User ${username} is logging in`);
     });
   };
 
   const logout = () => {
     auth.signout(() => {
-      console.log("CB_signout");
+      console.log(`User ${username} is logging out`);
     });
   };
 
@@ -36,6 +38,14 @@ const LoginBox = props => {
           theme={theme}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+        ></Input>
+        <Input
+          id='password'
+          name='password'
+          type='password'
+          theme={theme}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         ></Input>
         <Button theme={theme} onClick={login} sx={{ mt: '1em' }}>Login</Button>
         <Button theme={theme} onClick={logout} sx={{ mt: '1em' }}>Logout</Button>
