@@ -13,7 +13,7 @@ const LoginPage = props => {
   else {
     return (
       <>
-        { "message" in location ? <p>{location.state.message}</p> : <p></p>}
+        { "message" in location.state ? <p>{location.state.message}</p> : <p></p>}
         <LoginBox />
       </>
     );

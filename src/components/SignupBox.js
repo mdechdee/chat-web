@@ -10,22 +10,20 @@ const SignupBox = () => {
     const [error, setError] = useState("");
     let history = useHistory();
     const signup = async () => {
-        const res = await axios.post('http://localhost:5000/api/auth/signup',
-            {
-                username,password
-            });
-        if(res.status == 201){
+        console.log("aaa");
+        try{
+            const res = await axios.post('http://localhost:5000/api/auth/signup',
+                {
+                    username,password
+                });
             history.push({
-                pathname: "/login",
+                pathname: '/login',
                 state: {
-                    message: "You successfully registered.",
-                    user: res,
-                    status: 201
+                    message: "You successfully registered."
                 }
-            });
-        }
-        else if(res.status == 500){
-            setError(res.message);
+            })
+        } catch (err) {
+            setError(err.message);
         }
     }
     return (

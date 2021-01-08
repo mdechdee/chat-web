@@ -19,7 +19,7 @@ function MessageList(props) {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await axios('http://localhost:5000/api/message/'+location.state.group_id);
+			const result = await axios.get('http://localhost:5000/api/message/'+location.state.group_id);
 			setMessages(result.data);
 		};
 		fetchData();

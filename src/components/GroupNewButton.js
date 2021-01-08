@@ -23,17 +23,21 @@ const GroupNewButton = props => {
     let new_id = makeid(5);
     const groups = await axios.get('http://localhost:5000/api/group');
     const groupNames = groups.data.map(({group_id}) => group_id);
+
     console.log(groupNames);
+
     while(!groupNames.includes(new_id)){
       new_id = makeid(5);
     }
+
     const res = await axios.post('http://localhost:5000/api/group', {
       group_id: new_id,
     });
+
     history.push({
       pathname: '/group/' + new_id,
       state: {
-        group_id: res.group_id
+        group_id: new_id
       }
     });
   }
