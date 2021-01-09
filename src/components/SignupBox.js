@@ -2,6 +2,7 @@ import { Button, Box } from 'rebass';
 import { Input } from '@rebass/forms'
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useTheme } from '@emotion/react';
 import axios from 'axios';
 
 
@@ -10,6 +11,7 @@ const SignupBox = () => {
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	let history = useHistory();
+	const theme = useTheme();
 	const signup = async () => {
 		console.log("aaa");
 		try {
