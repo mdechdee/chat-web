@@ -1,6 +1,7 @@
 import { Flex } from 'rebass'
 import { ThemeProvider } from '@emotion/react'
 import preset from '@rebass/preset'
+import theme from './theme.js'
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -18,7 +19,7 @@ import PrivateRoute from './components/authentication/PrivateRoute.js'
 function App() {
 	const auth = useProvideAuth();
 	return (
-		<ThemeProvider theme={preset}>
+		<ThemeProvider theme={theme}>
 			<authContext.Provider value={auth}>
 				<Router>
 					<Flex theme={preset} flexDirection='column' width={1 / 2} mx='auto' my='50px'>

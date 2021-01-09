@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react';
 import { React, useState } from 'react';
-import { Button, Heading, Card } from 'rebass';
-import { Input } from '@rebass/forms';
+import { Button, Flex, Box } from 'rebass';
+import { Input, Label } from '@rebass/forms';
 import { useAuth } from './authentication/Auth.js';
 
 const LoginBox = props => {
@@ -25,27 +25,30 @@ const LoginBox = props => {
 
   return (
     <>
-      <Card theme={theme}>
-        <Heading theme={theme}>Login</Heading>
-        <Input
-          id='id'
-          name='id'
-          type='id'
-          theme={theme}
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        ></Input>
-        <Input
-          id='password'
-          name='password'
-          type='password'
-          theme={theme}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></Input>
-        <Button theme={theme} onClick={login} sx={{ mt: '1em' }}>Login</Button>
-        <Button theme={theme} onClick={logout} sx={{ mt: '1em' }}>Logout</Button>
-      </Card>
+      <Box theme={theme} variant='flexColumn' width={0.8}>
+        <Box theme={theme} sx={{my: 4}}>
+          <Label theme={theme}>Username</Label>
+          <Input
+            id='id'
+            name='id'
+            type='id'
+            theme={theme}
+            value={username}
+            sx={{mb: 3}}
+            onChange={(e) => setUsername(e.target.value)}
+          ></Input>
+          <Label theme={theme}>Password</Label>
+          <Input
+            id='password'
+            name='password'
+            type='password'
+            theme={theme}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></Input>
+        </Box>
+        <Button theme={theme} variant='outline' onClick={login} >Sign In</Button>
+      </Box>
     </>
   );
 }
