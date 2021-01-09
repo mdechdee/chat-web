@@ -1,10 +1,6 @@
 import { useTheme } from '@emotion/react';
 import { React, useState } from 'react';
-import {
-  Button,
-  Heading,
-} from 'rebass';
-import { Card } from '@material-ui/core';
+import { Button, Heading, Card } from 'rebass';
 import { Input } from '@rebass/forms';
 import { useAuth } from './authentication/Auth.js';
 
@@ -14,7 +10,7 @@ const LoginBox = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const login = () => {
-    auth.signin( {username,password} ,() => {
+    auth.signin({ username, password }, () => {
       console.log(`User ${username} is logging in`);
     });
   };

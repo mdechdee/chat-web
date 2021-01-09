@@ -1,9 +1,5 @@
 import { React } from 'react'
-import { useAuth } from './authentication/Auth.js'
 import { useTheme } from '@emotion/react';
-import {
-  Redirect
-} from "react-router-dom";
 import { Button } from 'rebass';
 
 const createGroup = () => {}

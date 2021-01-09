@@ -1,6 +1,4 @@
 import { React } from 'react';
-import { useAuth } from './authentication/Auth.js';
-import { Redirect } from "react-router-dom";
 import { Button } from 'rebass';
 import { useTheme } from '@emotion/react';
 import { useHistory } from 'react-router-dom';

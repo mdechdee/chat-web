@@ -5,7 +5,6 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Redirect,
 } from "react-router-dom";
 import HomePage from './components/HomePage.js'
 import VisitorPage from './components/VisitorPage.js'

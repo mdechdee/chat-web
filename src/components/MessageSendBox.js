@@ -4,7 +4,7 @@ import {
 	Button,
 	Flex,
 } from 'rebass'
-import { Label, Input, Textarea } from '@rebass/forms'
+import { Label, Textarea } from '@rebass/forms'
 import { useTheme } from '@emotion/react'
 import { useLocation } from 'react-router-dom'
 import {useAuth} from './authentication/Auth.js'

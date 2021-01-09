@@ -7,8 +7,6 @@ import MessageCard from './MessageCard.js'
 import axios from 'axios';
 import { useTheme } from '@emotion/react';
 import { useLocation } from 'react-router-dom';
-import { useAuth } from './authentication/Auth.js';
-
 
 function MessageList(props) {
 	let location = useLocation();
@@ -26,26 +24,24 @@ function MessageList(props) {
 	}, [messages]);
 
 	return (
-		<>
-			<Box theme={theme}>
-				<Heading theme={theme}> Some dudes text </Heading>
-				{
-					(() => {
-					if(messages != []){
-						return(messages.map((item,index) => ( 
-							<MessageCard
-								key={index}
-								title={item.sender}
-								message={item.message}
-							></MessageCard>
-						)));
-					}
-					else{
-						return(<></>)};
-					})()
+		<Box theme={theme}>
+			<Heading theme={theme}> Some dudes text </Heading>
+			{
+				(() => {
+				if(messages !== [] && typeof location.state.group_id !== "undefined"){
+					return(messages.map((item,index) => ( 
+						<MessageCard
+							key={index}
+							title={item.sender}
+							message={item.message}
+						></MessageCard>
+					)));
 				}
-			</Box>
-		</>
+				else{
+					return(<></>)};
+				})()
+			}
+		</Box>
 	)
 }
 
