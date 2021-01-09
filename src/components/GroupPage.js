@@ -6,8 +6,8 @@ import MessageList from './MessageList.js'
 const GroupPage = props => {
   return (
     <Box>
-      <MessageSendBox/>
       <MessageList/>
+      <MessageSendBox/>
     </Box>
   );
 }
