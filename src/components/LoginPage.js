@@ -17,7 +17,10 @@ const LoginPage = props => {
   else {
     return (
       <Box theme={theme} variant='flexColumn'>
-        {location.state !== undefined && "message" in location.state ? <p>{location.state.message}</p> : <p></p>}
+        {location.state !== undefined && "message" in location.state ? 
+          <Text sx={{ color: 'green', fontWeight: 'bold', margin:'20px'}}>{location.state.message}</Text> 
+          : 
+          <></>}
         <Text theme={theme} variant='subtitle'>Sign in to</Text>
         <Heading theme={theme} variant='title' sx={{fontSize: 7}}> ChatWithMe </Heading>
         <LoginBox />

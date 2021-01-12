@@ -43,7 +43,7 @@ const GroupNewButton = props => {
   }
 
   return(
-    <Button onClick={createGroup} theme={theme}>
+    <Button onClick={createGroup} theme={theme} variant ='outline'>
       Create a Group
     </Button>
   );

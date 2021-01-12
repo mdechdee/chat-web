@@ -37,7 +37,8 @@ const GroupJoinBox = props => {
   }
 
   return (
-    <Flex theme={theme} sx={{ '> *': { mx: '1em' } }}>
+    <>
+    <Flex theme={theme}>
       <Input
         id='group_id'
         name='group_id'
@@ -49,11 +50,15 @@ const GroupJoinBox = props => {
       <Button
         onClick={joinGroup}
         theme={theme}
-        sx={{ mt: '1em' }}
+        width='150px'
+        height='40px'
+        marginTop='7px'
+        variant='outline'
         >
         Join Group
       </Button>
     </Flex>
+    </>
   );
 }
 

@@ -24,8 +24,10 @@ function MessageList(props) {
 	}, [messages]);
 
 	return (
-		<Box theme={theme}>
-			<Heading theme={theme}> Some dudes text </Heading>
+		<Box theme={theme} sx={{
+			overflow:'auto',
+			height:'500px',
+		}}>
 			{
 				(() => {
 				if(messages !== [] && typeof location.state.group_id !== "undefined"){
