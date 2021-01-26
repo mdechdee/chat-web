@@ -55,7 +55,7 @@ const GroupJoinBox = props => {
         marginTop='7px'
         variant='outline'
         >
-        Join Group
+        Join Group MORE
       </Button>
     </Flex>
     </>
